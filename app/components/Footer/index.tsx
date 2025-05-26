@@ -17,9 +17,10 @@ const products: ProductType[] = [
     {
         id: 3,
         section: "Pages",
-        link: ['404']
-    } 
-]
+        link: ['404'],
+    },
+];
+
 
 const footer = () => {
     return (
@@ -65,10 +66,10 @@ const footer = () => {
                 <div className="pt-5 pb-5 px-4 sm:px-6 lg:px-4 border-solid border-t border-footer">
                     <div className="mt-4 grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 xl:gap-x-8">
                         <div>
-                            <h3 className='text-center md:text-start text-offwhite text-lg'>@2025 - All Rights Reserved by <b>Kev Builds</b></h3>
+                            <h3 className='text-center md:text-start text-offwhite text-lg'>2025 - All Rights Reserved by <b>Kev Builds</b></h3>
                         </div>
                         <div className="flex justify-center md:justify-end">
-                                                    </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ interface datatype {
     heading: string;
     imgSrc: string;
     paragraph: string;
-    link: string;
+    link?: string;
 }
 
 const Aboutdata: datatype[] = [

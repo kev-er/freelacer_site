@@ -14,26 +14,37 @@ interface DataType {
 const postData: DataType[] = [
     { 
         imgSrc: '/images/wework/avatar.svg',
+        name: 'Gaby Brown',
+        profession: 'UI/UX Designer'
     },
     { 
         imgSrc: '/images/wework/avatar3.svg',
+        name: 'Marcus Green',
+        profession: 'Frontend Developer'
     },
     {
         imgSrc: '/images/wework/avatar4.svg',
+        name: 'Lana Smith',
+        profession: 'Product Manager'
     },
     {
         imgSrc: '/images/wework/avatar.svg',
+        name: 'Samuel Lee',
+        profession: 'Backend Developer'
     },
     {
         imgSrc: '/images/wework/avatar3.svg',
+        name: 'Ava Johnson',
+        profession: 'QA Engineer'
     },
     {
         imgSrc: '/images/wework/avatar4.svg',
+        name: 'Noah White',
+        profession: 'DevOps Engineer'
     },
-]
+];
 
 // CAROUSEL SETTINGS
-
 
 export default class MultipleItems extends Component {
 
@@ -42,7 +53,6 @@ export default class MultipleItems extends Component {
             dots: false,
             infinite: true,
             slidesToShow: 5,
-            // centerMode: true,
             slidesToScroll: 1,
             arrows: false,
             autoplay: true,
@@ -80,18 +90,14 @@ export default class MultipleItems extends Component {
             ]
         };
 
-
         return (
             <div className="bg-wework py-32">
-
-                <div className='mx-auto max-w-2xl lg:max-w-7xl sm:py-4 lg:px-8 '>
-
+                <div className='mx-auto max-w-2xl lg:max-w-7xl sm:py-4 lg:px-8'>
                     <div className="text-center">
                         <h3 className="text-4xl sm:text-6xl font-bold text-black my-2">I work in several verticals.</h3>
                         <h3 className="text-4xl sm:text-6xl font-bold text-black opacity-50 lg:mr-48 my-2">I work in several verticals.</h3>
                         <h3 className="text-4xl sm:text-6xl font-bold text-black opacity-25 lg:-mr-32 my-2">I work in several verticals.</h3>
                     </div>
-
                 </div>
 
                 <Slider {...settings}>
@@ -99,7 +105,7 @@ export default class MultipleItems extends Component {
                         <div key={i}>
                             <div className='bg-white m-3 py-14 my-10 text-center shadow-xl rounded-3xl'>
                                 <div className='relative'>
-                                    <Image src={items.imgSrc} alt="gaby" width={252} height={182} className="inline-block m-auto" />
+                                    <Image src={items.imgSrc} alt={items.name} width={252} height={182} className="inline-block m-auto" />
                                 </div>
                                 <h4 className='text-4xl font-bold pt-14'>{items.name}</h4>
                                 <h3 className='text-2xl font-normal pt-4 pb-2 opacity-50'>{items.profession}</h3>
@@ -107,9 +113,8 @@ export default class MultipleItems extends Component {
                         </div>
                     ))}
                 </Slider>
-
             </div>
-
         );
     }
 }
+
