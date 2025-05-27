@@ -1,14 +1,11 @@
-
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
-
 const nextConfig = {
-  basePath: isProd ? "/Kev Builds" : "",
-  assetPrefix: isProd ? "/Kev Builds/" : "",
-  output: "export",
+  output: 'export',
+  trailingSlash: true, // Required for static routing to work on Netlify
   images: {
-    unoptimized: true,
+    unoptimized: true, // Needed if you're using <Image> but not optimizing on server
   },
 };
 
 module.exports = nextConfig;
+
