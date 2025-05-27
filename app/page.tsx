@@ -8,7 +8,7 @@ import Featured from './components/Featured/index';
 import Manage from './components/Manage/index';
 import FAQ from './components/FAQ/index';
 import Joinus from './components/Joinus/index';
-import '../styles/globals.css';
+
 
 
 
