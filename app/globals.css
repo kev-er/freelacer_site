@@ -203,6 +203,7 @@ html {
 @media only screen and (max-width: 1400px) {
   .bg-testimonial {
     background-position: 80%, top right, top left;
+    background-image:('/image/wework/elipse.svg'), urk()
   }
 }
 
@@ -236,7 +237,7 @@ html {
 }
 
 .bg-joinus {
-  background-image: url('/images/joinus/horn.svg'), url('/images/joinus/paint.svg');
+  background-image: url('/images/joinus/horn.svg');
   background-repeat: no-repeat, no-repeat;
   background-position: 84% 109%, 12% 18%;
 }

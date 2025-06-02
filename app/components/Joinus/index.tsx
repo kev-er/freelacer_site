@@ -7,8 +7,8 @@ const Join = () => {
                 <div className="text-center">
                     <h3 className="text-blue text-lg font-normal tracking-widest">Want to get a quote?</h3>
                     <h2 className="text-4xl sm:text-6xl font-bold my-6 leading-10"> Take your business to <br /> the new level.</h2>
-                    <p className="text-lightblack text-base font-normal">Take your business to the next level with a custom-built website that works as hard as you do.
-Tell me a bit about your project, <br /> and I’ll get back to you with a no-obligation quote — fast, honest, and tailored to your needs.</p>
+                    <p className="text-lightblack text-base font-normal my-10 mx-4">Take your business to the next level with a custom-built website that works as hard as you do.
+Tell me a bit about your project, <br /> <br /> and I’ll get back to you with a no-obligation quote — fast, honest, and tailored to your needs.</p>
                 </div>
 
                 <div className="mx-auto max-w-4xl pt-5">
