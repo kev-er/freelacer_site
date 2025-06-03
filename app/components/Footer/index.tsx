@@ -32,7 +32,7 @@ const footer = () => {
                                 <Link href="https://facebook.com"><Image src={'/images/footer/vec.svg'} alt="facebook" width={15} height={20} /></Link>
                             </div>
                             <div className='footer-icons'>
-                                <Link href="https://instagram.com"><Image src={'/images/footer/instagram.svg'} alt="instagram" width={20} height={20} /></Link>
+                                <Link href="https://www.instagram.com/kevbuilds_/?utm_source=qr"><Image src={'/images/footer/instagram.svg'} alt="instagram" width={20} height={20} /></Link>
                             </div>
                         </div>
                     </div>
