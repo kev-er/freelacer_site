@@ -12,19 +12,19 @@ interface DataType {
 
 const postData: DataType[] = [
     {
-        heading: 'Brand design for a computer brand.',
+        heading: 'Website for a design company.',
         imgSrc: '/images/featured/feat1.jpg',
     },
     {
-        heading: 'Mobile app 3d wallpaper.',
+        heading: 'A professional Coaching Website.',
         imgSrc: '/images/featured/feat2.jpg',
     },
     {
-        heading: 'Brand design for a computer brand.',
+        heading: 'Website for a design company',
         imgSrc: '/images/featured/feat1.jpg',
     },
     {
-        heading: 'Mobile app 3d wallpaper.',
+        heading: 'A professional Coaching Website.',
         imgSrc: '/images/featured/feat2.jpg',
     }
 ]
