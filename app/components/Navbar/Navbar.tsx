@@ -8,7 +8,7 @@ import Drawerdata from "./Drawerdata";
 import Contactusform from './Contactus';
 
 const navigation = [
-    { name: 'About Us', href: '#aboutus-section', current: false },
+    { name: 'About', href: '#aboutus-section', current: false },
     { name: 'Services', href: '#services-section', current: false },
     { name: 'FAQ', href: '#faq-section', current: false },
 ];
