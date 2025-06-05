@@ -112,6 +112,7 @@ const Contactusform = ({
                         method="POST"
                         data-netlify="true"
                         data-netlify-honeypot="bot-field"
+                        action="/success"
                         onSubmit={handleSubmit}
                         className="space-y-8"
                       >
