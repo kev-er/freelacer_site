@@ -2,8 +2,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Link from "next/link";
-import { HiddenNetlifyForm } from '@/app/components/Banner';
-
 
 const Contactusform = ({
   isOpen,
@@ -30,18 +28,21 @@ const Contactusform = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const formData = new FormData();
+    const formData = new URLSearchParams();
     formData.append("form-name", "contact");
     Object.entries(inputValues).forEach(([key, value]) => {
       formData.append(key, value);
     });
 
     try {
-      await fetch("/", {
+      const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData.toString(),
       });
+      if (!res.ok) throw new Error("Network error");
       setSubmitted(true);
       setInputValues({ name: "", email: "", message: "" });
     } catch (error) {
@@ -49,11 +50,16 @@ const Contactusform = ({
     }
   };
 
-  const isDisabled = Object.values(inputValues).some((val) => val === "");
+  const isDisabled = Object.values(inputValues).some((val) => val.trim() === "");
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={closeModal}>
+      <Dialog
+        as="div"
+        className="relative z-50"
+        onClose={closeModal}
+        initialFocus={undefined}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -183,4 +189,3 @@ const Contactusform = ({
 };
 
 export default Contactusform;
-
