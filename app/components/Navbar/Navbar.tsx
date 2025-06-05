@@ -5,7 +5,7 @@ import React from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
-import Contactusform from "./Contactusform";
+import Contactus from './Contactus';
 
 const navigation = [
   { name: "About", href: "#aboutus-section", current: false },
