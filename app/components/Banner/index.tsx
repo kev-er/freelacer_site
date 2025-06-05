@@ -4,8 +4,25 @@ import Image from "next/image";
 const Banner = () => {
   return (
     <div className='mx-auto max-w-7xl my-10 sm:py-10 px-6 lg:px-8'>
-      <div className='grid grid-cols-1 lg:grid-cols-2 my-16'>
+      {/* Hidden Netlify Form */}
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        hidden
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <div hidden>
+          <input name="bot-field" />
+        </div>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <textarea name="message" />
+      </form>
 
+      {/* VISIBLE BANNER */}
+      <div className='grid grid-cols-1 lg:grid-cols-2 my-16'>
         {/* COLUMN-1 */}
         <div className="mx-auto sm:mx-0">
           <div className='py-3 text-center lg:text-start'>
@@ -25,29 +42,10 @@ const Banner = () => {
         <div className='lg:-m-24 lg:pt-20 hidden lg:block'>
           <Image src="/images/banner/banner.png" alt="hero-image" width={800} height={642} />
         </div>
-
       </div>
     </div>
   );
 };
 
-// CHANGED to named export
-export function HiddenNetlifyForm() {
-  return (
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      hidden
-    >
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="message" />
-    </form>
-  );
-}
-
-// Only one default export allowed
 export default Banner;
 
