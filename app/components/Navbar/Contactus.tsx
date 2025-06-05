@@ -16,7 +16,7 @@ const Contactusform = ({
     message: "",
   });
 
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,9 +25,35 @@ const Contactusform = ({
     setInputValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const allFieldsFilled = Object.values(inputValues).every(
-    (val) => val.trim() !== ""
-  );
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const formData = new URLSearchParams();
+    formData.append("form-name", "contact");
+    formData.append("bot-field", ""); // required for honeypot
+    Object.entries(inputValues).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString(),
+      });
+
+      if (!res.ok) throw new Error("Form submission failed.");
+
+      // ✅ redirect to success page
+      window.location.href = "/success";
+    } catch (error) {
+      alert("There was a problem submitting the form.");
+      setSubmitting(false);
+    }
+  };
+
+  const isDisabled = Object.values(inputValues).some((val) => val.trim() === "");
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -63,10 +89,7 @@ const Contactusform = ({
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <div className="py-8 px-4 mx-auto max-w-screen-md">
                   <div className="flex items-center justify-center">
-                    <Link
-                      href="/"
-                      className="text-2xl sm:text-4xl font-semibold text-black"
-                    >
+                    <Link href="/" className="text-2xl sm:text-4xl font-semibold text-black">
                       Kev Builds
                     </Link>
                   </div>
@@ -80,22 +103,16 @@ const Contactusform = ({
                     method="POST"
                     data-netlify="true"
                     data-netlify-honeypot="bot-field"
-                    action="/success"
+                    onSubmit={handleSubmit}
                     className="space-y-8"
                   >
                     <input type="hidden" name="form-name" value="contact" />
                     <div hidden>
-                      <label>
-                        Don’t fill this out if you’re human:{" "}
-                        <input name="bot-field" />
-                      </label>
+                      <input name="bot-field" />
                     </div>
 
                     <div>
-                      <label
-                        htmlFor="name"
-                        className="block mb-2 text-sm font-medium text-gray-900"
-                      >
+                      <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">
                         Your Name
                       </label>
                       <input
@@ -109,11 +126,9 @@ const Contactusform = ({
                         placeholder="Name..."
                       />
                     </div>
+
                     <div>
-                      <label
-                        htmlFor="email"
-                        className="block mb-2 text-sm font-medium text-gray-900"
-                      >
+                      <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                         Your Email
                       </label>
                       <input
@@ -127,11 +142,9 @@ const Contactusform = ({
                         placeholder="you@email.com"
                       />
                     </div>
+
                     <div>
-                      <label
-                        htmlFor="message"
-                        className="block mb-2 text-sm font-medium text-gray-900"
-                      >
+                      <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900">
                         Your Message
                       </label>
                       <textarea
@@ -144,12 +157,13 @@ const Contactusform = ({
                         placeholder="Leave a message..."
                       />
                     </div>
+
                     <button
                       type="submit"
-                      disabled={!allFieldsFilled || isDisabled}
+                      disabled={isDisabled || submitting}
                       className="w-full py-3 px-5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
                     >
-                      Send Message
+                      {submitting ? "Sending..." : "Send Message"}
                     </button>
                   </form>
                 </div>
@@ -163,3 +177,4 @@ const Contactusform = ({
 };
 
 export default Contactusform;
+
