@@ -27,19 +27,26 @@ const Banner = () => {
                 </div>
 
             </div>
-            <form
-             name="contact"
-             method="POST"
-             data-netlify="true"
-             data-netlify-honeypot="bot-field"
-             hidden
-            >
-            <input type="text" name="name" />
-            <input type="email" name="email" />
-            <textarea name="message"></textarea>
-            </form>
         </div>
     )
 }
+
+
+export default function HiddenNetlifyForm() {
+  return (
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message" />
+    </form>
+  );
+}
+
 
 export default Banner;
