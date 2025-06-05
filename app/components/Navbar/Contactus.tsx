@@ -29,7 +29,7 @@ const Contactusform = ({
     e.preventDefault();
     setSubmitting(true);
 
-    const formData = new URLSearchParams();
+    const formData = new FormData();
     formData.append("form-name", "contact");
     formData.append("bot-field", ""); // required for honeypot
     Object.entries(inputValues).forEach(([key, value]) => {
@@ -40,15 +40,24 @@ const Contactusform = ({
       const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData.toString(),
+        body: new URLSearchParams(formData as any).toString(),
       });
 
       if (!res.ok) throw new Error("Form submission failed.");
 
-      // ✅ redirect to success page
+      // Clear form
+      setInputValues({
+        name: "",
+        email: "",
+        message: "",
+      });
+      
+      // Close modal and redirect
+      closeModal();
       window.location.href = "/success";
     } catch (error) {
-      alert("There was a problem submitting the form.");
+      console.error("Form submission error:", error);
+      alert("There was a problem submitting the form. Please try again.");
       setSubmitting(false);
     }
   };
