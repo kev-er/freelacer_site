@@ -1,8 +1,7 @@
-'use client';
-import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+"use client";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
+import Link from "next/link";
 
 const Contactusform = ({
   isOpen,
@@ -11,14 +10,13 @@ const Contactusform = ({
   isOpen: boolean;
   closeModal: () => void;
 }) => {
-  const router = useRouter();
   const [inputValues, setInputValues] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -27,35 +25,9 @@ const Contactusform = ({
     setInputValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const formData = new URLSearchParams();
-    formData.append('form-name', 'contact');
-    Object.entries(inputValues).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
-
-    try {
-      const res = await fetch('/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formData.toString(),
-      });
-      if (!res.ok) throw new Error('Network error');
-      setSubmitted(true);
-      setInputValues({ name: '', email: '', message: '' });
-
-      // Redirect to custom success page
-      router.push('/success');
-    } catch (error) {
-      alert('There was a problem submitting the form.');
-    }
-  };
-
-  const isDisabled = Object.values(inputValues).some((val) => val.trim() === '');
+  const allFieldsFilled = Object.values(inputValues).every(
+    (val) => val.trim() !== ""
+  );
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -98,92 +70,88 @@ const Contactusform = ({
                       Kev Builds
                     </Link>
                   </div>
-                  {submitted ? (
-                    <p className="mt-6 text-center text-green-600 font-semibold">
-                      Thanks for getting in touch! I’ll get back to you soon.
-                    </p>
-                  ) : (
-                    <>
-                      <p className="mb-8 mt-8 font-light text-center text-gray-500 sm:text-xl">
-                        Contact me now
-                      </p>
-                      <form
-                        name="contact"
-                        method="POST"
-                        data-netlify="true"
-                        data-netlify-honeypot="bot-field"
-                        action="/success"
-                        onSubmit={handleSubmit}
-                        className="space-y-8"
-                      >
-                        <input type="hidden" name="form-name" value="contact" />
-                        <div hidden>
-                          <input name="bot-field" />
-                        </div>
 
-                        <div>
-                          <label
-                            htmlFor="name"
-                            className="block mb-2 text-sm font-medium text-gray-900"
-                          >
-                            Your Name
-                          </label>
-                          <input
-                            id="name"
-                            name="name"
-                            value={inputValues.name}
-                            onChange={handleChange}
-                            type="text"
-                            required
-                            className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
-                            placeholder="Name..."
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="email"
-                            className="block mb-2 text-sm font-medium text-gray-900"
-                          >
-                            Your Email
-                          </label>
-                          <input
-                            id="email"
-                            name="email"
-                            value={inputValues.email}
-                            onChange={handleChange}
-                            type="email"
-                            required
-                            className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
-                            placeholder="you@email.com"
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor="message"
-                            className="block mb-2 text-sm font-medium text-gray-900"
-                          >
-                            Your Message
-                          </label>
-                          <textarea
-                            id="message"
-                            name="message"
-                            value={inputValues.message}
-                            onChange={handleChange}
-                            required
-                            className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
-                            placeholder="Leave a message..."
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          disabled={isDisabled}
-                          className="w-full py-3 px-5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
-                        >
-                          Send Message
-                        </button>
-                      </form>
-                    </>
-                  )}
+                  <p className="mb-8 mt-8 font-light text-center text-gray-500 sm:text-xl">
+                    Contact me now
+                  </p>
+
+                  <form
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    action="/success"
+                    className="space-y-8"
+                  >
+                    <input type="hidden" name="form-name" value="contact" />
+                    <div hidden>
+                      <label>
+                        Don’t fill this out if you’re human:{" "}
+                        <input name="bot-field" />
+                      </label>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block mb-2 text-sm font-medium text-gray-900"
+                      >
+                        Your Name
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        value={inputValues.name}
+                        onChange={handleChange}
+                        type="text"
+                        required
+                        className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        placeholder="Name..."
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-900"
+                      >
+                        Your Email
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        value={inputValues.email}
+                        onChange={handleChange}
+                        type="email"
+                        required
+                        className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        placeholder="you@email.com"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="block mb-2 text-sm font-medium text-gray-900"
+                      >
+                        Your Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={inputValues.message}
+                        onChange={handleChange}
+                        required
+                        className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        placeholder="Leave a message..."
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={!allFieldsFilled || isDisabled}
+                      className="w-full py-3 px-5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
+                    >
+                      Send Message
+                    </button>
+                  </form>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
