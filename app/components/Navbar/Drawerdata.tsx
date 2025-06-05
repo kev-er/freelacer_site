@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const navigation = [
-  { name: 'About Us', href: '#aboutus-section', current: true },
+  { name: 'About Me', href: '#aboutus-section', current: true },
   { name: 'Services', href: '#services-section', current: false },
   { name: 'FAQ', href: '#faq-section', current: false },
 ];
