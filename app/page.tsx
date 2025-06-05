@@ -1,14 +1,13 @@
-import Banner from './components/Banner/index';
-import Aboutus from './components/Aboutus/index';
-import Dedicated from './components/Dedicated/index';
-import Digital from './components/Digital/index';
-import Beliefs from './components/Beliefs/index';
-import Ourteam from './components/Ourteam/index';
-import Featured from './components/Featured/index';
-import Manage from './components/Manage/index';
-import FAQ from './components/FAQ/index';
-import Joinus from './components/Joinus/index';
-import { HiddenNetlifyForm } from '@/app/components/Banner';
+import Banner, { HiddenNetlifyForm } from './components/Banner';
+import Aboutus from './components/Aboutus';
+import Dedicated from './components/Dedicated';
+import Digital from './components/Digital';
+import Beliefs from './components/Beliefs';
+import Ourteam from './components/Ourteam';
+import Featured from './components/Featured';
+import Manage from './components/Manage';
+import FAQ from './components/FAQ';
+import Joinus from './components/Joinus';
 
 export default function Home() {
   return (
@@ -18,7 +17,7 @@ export default function Home() {
       <Aboutus />
       <Dedicated />
       <Digital />
-      <Beliefs /> 
+      <Beliefs />
       <Ourteam />
       <Featured />
       <Manage />
