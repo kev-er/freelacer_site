@@ -1,5 +1,12 @@
 import Image from "next/image";
 
+{/* Netlify bot reads this at build time */}
+<form name="contact" netlify hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <textarea name="message" />
+</form>
+
 const Banner = () => {
     return (
         <div className='mx-auto max-w-7xl my-10 sm:py-10 px-6 lg:px-8'>
