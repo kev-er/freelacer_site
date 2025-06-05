@@ -2,6 +2,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Link from "next/link";
+import { HiddenNetlifyForm } from '@/app/components/Banner';
+
 
 const Contactusform = ({
   isOpen,
