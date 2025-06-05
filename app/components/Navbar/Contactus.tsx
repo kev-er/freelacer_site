@@ -3,6 +3,13 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Link from "next/link";
 
+{/* Netlify bot reads this at build time */}
+<form name="contact" netlify hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <textarea name="message" />
+</form>
+
 const Contactusform = ({
   isOpen,
   closeModal,
