@@ -25,31 +25,6 @@ const Contactusform = ({
     setInputValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const formData = new URLSearchParams();
-    formData.append("form-name", "contact");
-    Object.entries(inputValues).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
-
-    try {
-      const res = await fetch("/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: formData.toString(),
-      });
-      if (!res.ok) throw new Error("Network error");
-      setSubmitted(true);
-      setInputValues({ name: "", email: "", message: "" });
-    } catch (error) {
-      alert("There was a problem submitting the form.");
-    }
-  };
-
   const isDisabled = Object.values(inputValues).some((val) => val.trim() === "");
 
   return (
@@ -103,17 +78,19 @@ const Contactusform = ({
                         Contact me now
                       </p>
                       <form
-                        name="contact"
+                        action="https://formsubmit.co/info@kevbuilds.co.uk"
                         method="POST"
-                        data-netlify="true"
-                        data-netlify-honeypot="bot-field"
-                        onSubmit={handleSubmit}
                         className="space-y-8"
+                        onSubmit={() => setSubmitted(true)}
                       >
-                        <input type="hidden" name="form-name" value="contact" />
-                        <div hidden>
-                          <input name="bot-field" />
-                        </div>
+                        {/* Optional fields for spam protection and redirect */}
+                        <input type="hidden" name="_captcha" value="false" />
+                        <input
+                          type="hidden"
+                          name="_next"
+                          value="https://kevbuilds.co.uk/thank-you"
+                        />
+                        <input type="text" name="_honey" style={{ display: "none" }} />
 
                         <div>
                           <label
@@ -189,3 +166,4 @@ const Contactusform = ({
 };
 
 export default Contactusform;
+
