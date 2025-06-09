@@ -23,7 +23,12 @@ const Banner = () => {
 
         {/* COLUMN-2 */}
         <div className='lg:-m-24 lg:pt-20 hidden lg:block'>
-          <Image src="/images/banner/banner.png" alt="hero-image" width={800} height={642} />
+          <Image
+            src="/images/banner/banner.png"
+            alt="hero-image"
+            width={800}
+            height={642}
+          />
         </div>
 
       </div>
@@ -31,23 +36,5 @@ const Banner = () => {
   );
 };
 
-// CHANGED to named export
-export function HiddenNetlifyForm() {
-  return (
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      hidden
-    >
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="message" />
-    </form>
-  );
-}
-
-// Only one default export allowed
 export default Banner;
 
