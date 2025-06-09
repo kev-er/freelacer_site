@@ -83,7 +83,7 @@ const Contactusform = ({
                         className="space-y-8"
                         onSubmit={() => setSubmitted(true)}
                       >
-                        {/* Optional fields for spam protection and redirect */}
+                        {/* Hidden fields for Formsubmit features */}
                         <input type="hidden" name="_captcha" value="false" />
                         <input
                           type="hidden"
@@ -148,7 +148,7 @@ const Contactusform = ({
                         <button
                           type="submit"
                           disabled={isDisabled}
-                          className="w-full py-3 px-5 text-sm font-medium text-black bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
+                          className="w-full py-3 px-5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
                         >
                           Send Message
                         </button>
