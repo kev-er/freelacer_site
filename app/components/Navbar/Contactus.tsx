@@ -25,7 +25,9 @@ const Contactusform = ({
     setInputValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const isDisabled = Object.values(inputValues).some((val) => val.trim() === "");
+  const isDisabled = Object.values(inputValues).some(
+    (val) => val.trim() === ""
+  );
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -81,16 +83,29 @@ const Contactusform = ({
                         action="https://formsubmit.co/holmk21@gmail.com"
                         method="POST"
                         className="space-y-8"
-                        onSubmit={() => setSubmitted(true)}
+                        onSubmit={(e) => {
+                          e.preventDefault(); // prevents default form behavior
+                          setSubmitted(true); // show thank you message
+                          e.currentTarget.submit(); // force native submit
+                        }}
                       >
-                        {/* Hidden fields for Formsubmit features */}
+                        {/* Hidden FormSubmit settings */}
                         <input type="hidden" name="_captcha" value="false" />
                         <input
                           type="hidden"
                           name="_next"
                           value="https://kevbuilds.co.uk/thank-you"
                         />
-                        <input type="text" name="_honey" style={{ display: "none" }} />
+                        <input
+                          type="hidden"
+                          name="_template"
+                          value="table"
+                        />
+                        <input
+                          type="text"
+                          name="_honey"
+                          style={{ display: "none" }}
+                        />
 
                         <div>
                           <label
@@ -110,6 +125,7 @@ const Contactusform = ({
                             placeholder="Name..."
                           />
                         </div>
+
                         <div>
                           <label
                             htmlFor="email"
@@ -128,6 +144,7 @@ const Contactusform = ({
                             placeholder="you@email.com"
                           />
                         </div>
+
                         <div>
                           <label
                             htmlFor="message"
@@ -145,10 +162,11 @@ const Contactusform = ({
                             placeholder="Leave a message..."
                           />
                         </div>
+
                         <button
                           type="submit"
                           disabled={isDisabled}
-                          className="w-full py-3 px-5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
+                          className="w-full py-3 px-5 text-sm font-medium text-black bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
                         >
                           Send Message
                         </button>
@@ -166,3 +184,4 @@ const Contactusform = ({
 };
 
 export default Contactusform;
+
