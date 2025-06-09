@@ -28,7 +28,7 @@ const Contactus: React.FC<ContactusProps> = ({ isOpen, closeModal }) => {
           className="space-y-4"
         >
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://kevbuilds.co.uk/thank-you" />
+          <input type="hidden" name="_next" value="https://kevbuilds.co.uk/#thank-you" />
           <input type="text" name="_honey" style={{ display: "none" }} />
 
           <input
