@@ -1,137 +1,87 @@
-"use client";
+'use client';
 
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import React from 'react';
 
-export default function Contactusform() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
+const Contactus = () => {
   return (
-    <>
-      <button
-        type="button"
-        onClick={openModal}
-        className="rounded-md bg-blue px-4 py-2 text-sm font-medium text-white hover:bg-btnblue focus:outline-none"
-      >
-        Let's Talk
-      </button>
+    <div className="bg-white py-24 sm:py-32 lg:pb-40">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {`Let's talk about your project`}
+          </h2>
+          <p className="mt-2 text-lg leading-8 text-gray-600">
+            {`We'd love to hear what you're working on and how we can help.`}
+          </p>
+        </div>
+        <form
+          action="https://formsubmit.co/info@kevbuilds.co.uk"
+          method="POST"
+          className="mx-auto mt-16 max-w-xl sm:mt-20"
+        >
+          {/* Hidden fields for spam protection and redirect */}
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://kevbuilds.co.uk/thank-you" />
+          <input type="text" name="_honey" style={{ display: 'none' }} />
 
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={closeModal}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-40" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title className="text-lg font-medium leading-6 text-gray-900">
-                    Contact Me
-                  </Dialog.Title>
-                  <p className="mt-1 text-sm text-gray-500">
-                    Fill out the form and I’ll get back to you as soon as possible.
-                  </p>
-
-                  <form
-                    action="https://formsubmit.co/info@kevbuilds.co.uk"
-                    method="POST"
-                    className="mt-4 space-y-4"
-                  >
-                    {/* Hidden Fields */}
-                    <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_next" value="https://kevbuilds.co.uk/thank-you" />
-                    <input type="text" name="_honey" style={{ display: "none" }} />
-
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        required
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue focus:border-blue sm:text-sm p-2"
-                        placeholder="Your name"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue focus:border-blue sm:text-sm p-2"
-                        placeholder="Your email"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                        Message
-                      </label>
-                      <textarea
-                        name="message"
-                        required
-                        rows={4}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue focus:border-blue sm:text-sm p-2"
-                        placeholder="Your message"
-                      />
-                    </div>
-
-                    <div className="mt-4 flex justify-end">
-                      <button
-                        type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-blue px-4 py-2 text-sm font-medium text-white hover:bg-btnblue"
-                      >
-                        Send Message
-                      </button>
-                    </div>
-                  </form>
-
-                  <div className="mt-4 text-center">
-                    <button
-                      type="button"
-                      onClick={closeModal}
-                      className="text-sm text-gray-500 hover:text-gray-800"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
+          <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+            <div>
+              <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900">
+                Name
+              </label>
+              <div className="mt-2.5">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  autoComplete="name"
+                  required
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
+                Email
+              </label>
+              <div className="mt-2.5">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  autoComplete="email"
+                  required
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div className="sm:col-span-2">
+              <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
+                Message
+              </label>
+              <div className="mt-2.5">
+                <textarea
+                  name="message"
+                  id="message"
+                  rows={4}
+                  required
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue sm:text-sm sm:leading-6"
+                ></textarea>
+              </div>
             </div>
           </div>
-        </Dialog>
-      </Transition>
-    </>
+          <div className="mt-10">
+            <button
+              type="submit"
+              className="block w-full rounded-md bg-blue px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-btnblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+            >
+              {`Let's get started`}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
-}
+};
 
+export default Contactus;
