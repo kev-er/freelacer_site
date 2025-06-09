@@ -148,7 +148,7 @@ const Contactusform = ({
                         <button
                           type="submit"
                           disabled={isDisabled}
-                          className="w-full py-3 px-5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
+                          className="w-full py-3 px-5 text-sm font-medium text-black bg-blue-600 hover:bg-blue-700 rounded-lg disabled:opacity-50"
                         >
                           Send Message
                         </button>
