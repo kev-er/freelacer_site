@@ -5,7 +5,7 @@ import React from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
-import Contactus from './Contactus';
+import Contactus from "./Contactus";
 
 const navigation = [
   { name: "About", href: "#aboutus-section", current: false },
@@ -17,7 +17,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isOpenDrawer, setIsOpenDrawer] = React.useState(false);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
@@ -25,7 +25,10 @@ const Navbar = () => {
     setIsModalOpen(true);
     setIsOpenDrawer(false);
   };
-  const closeModal = () => setIsModalOpen(false);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <Disclosure as="nav" className="navbar">
@@ -35,10 +38,7 @@ const Navbar = () => {
             <div className="flex flex-1 items-center sm:justify-between">
               {/* LOGO */}
               <div className="flex flex-shrink-0 items-center border-right">
-                <Link
-                  href="/"
-                  className="text-2xl sm:text-4xl font-semibold text-black"
-                >
+                <Link href="/" className="text-2xl sm:text-4xl font-semibold text-black">
                   Kev Builds
                 </Link>
               </div>
@@ -97,3 +97,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

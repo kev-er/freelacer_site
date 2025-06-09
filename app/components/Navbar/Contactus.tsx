@@ -1,83 +1,66 @@
-'use client';
+import React from "react";
 
-import React from 'react';
+interface ContactusProps {
+  isOpen: boolean;
+  closeModal: () => void;
+}
 
-const Contactus = () => {
+const Contactus: React.FC<ContactusProps> = ({ isOpen, closeModal }) => {
+  if (!isOpen) return null;
+
   return (
-    <div className="bg-white py-24 sm:py-32 lg:pb-40">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {`Let's talk about your project`}
-          </h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            {`We'd love to hear what you're working on and how we can help.`}
-          </p>
-        </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-white p-6 rounded-lg max-w-lg w-full relative shadow-lg">
+        {/* Close Button */}
+        <button
+          onClick={closeModal}
+          className="absolute top-3 right-3 text-gray-700 hover:text-gray-900 text-2xl font-bold"
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
+
+        {/* Modal Content */}
+        <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
         <form
           action="https://formsubmit.co/info@kevbuilds.co.uk"
           method="POST"
-          className="mx-auto mt-16 max-w-xl sm:mt-20"
+          className="space-y-4"
         >
-          {/* Hidden fields for spam protection and redirect */}
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="https://kevbuilds.co.uk/thank-you" />
-          <input type="text" name="_honey" style={{ display: 'none' }} />
+          <input type="text" name="_honey" style={{ display: "none" }} />
 
-          <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-            <div>
-              <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900">
-                Name
-              </label>
-              <div className="mt-2.5">
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  autoComplete="name"
-                  required
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
-                Email
-              </label>
-              <div className="mt-2.5">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  autoComplete="email"
-                  required
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div className="sm:col-span-2">
-              <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
-                Message
-              </label>
-              <div className="mt-2.5">
-                <textarea
-                  name="message"
-                  id="message"
-                  rows={4}
-                  required
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue sm:text-sm sm:leading-6"
-                ></textarea>
-              </div>
-            </div>
-          </div>
-          <div className="mt-10">
-            <button
-              type="submit"
-              className="block w-full rounded-md bg-blue px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-btnblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
-            >
-              {`Let's get started`}
-            </button>
-          </div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your name"
+            required
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email"
+            required
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <textarea
+            name="message"
+            placeholder="Your message"
+            rows={4}
+            required
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+          >
+            Send
+          </button>
         </form>
       </div>
     </div>
@@ -85,3 +68,4 @@ const Contactus = () => {
 };
 
 export default Contactus;
+
