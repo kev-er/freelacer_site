@@ -78,7 +78,7 @@ const Contactusform = ({
                         Contact me now
                       </p>
                       <form
-                        action="https://formsubmit.co/info@kevbuilds.co.uk"
+                        action="https://formsubmit.co/holmk21@gmail.com"
                         method="POST"
                         className="space-y-8"
                         onSubmit={() => setSubmitted(true)}
@@ -166,4 +166,3 @@ const Contactusform = ({
 };
 
 export default Contactusform;
-
